@@ -1,8 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Register extends JFrame{
-    private JPanel contentPane;
+    private JPanel panel;
     private JTextField name;
     private JTextField username;
     private JPasswordField passwordField;
@@ -10,21 +12,6 @@ public class Register extends JFrame{
     private JTextField textField_2;
     private JTextField textField_3;
 
-    /**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    Register frame = new Register();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
 
     /**
      * Create the frame.
@@ -32,77 +19,79 @@ public class Register extends JFrame{
     public Register() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(400, 200, 600, 500);
-        contentPane = new JPanel();
-        contentPane.setForeground(new Color(255, 255, 255));
-        contentPane.setBackground(Color.BLACK);
-        setContentPane(contentPane);
-        contentPane.setLayout(null);
+        panel = new JPanel();
+//        panel.setForeground(new Color(255, 255, 255));
+        panel.setBackground(Color.BLACK);
+        setContentPane(panel);
+        panel.setLayout(null);
+        setLocationRelativeTo(null);
+        setResizable(false);
 
         JLabel lblNewLabel = new JLabel("Register");
         lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 34));
         lblNewLabel.setForeground(Color.WHITE);
         lblNewLabel.setBounds(242, 57, 200, 35);
-        contentPane.add(lblNewLabel);
+        panel.add(lblNewLabel);
 
         JLabel lblNewLabel_1 = new JLabel("House Renting System");
         lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 23));
         lblNewLabel_1.setForeground(Color.LIGHT_GRAY);
         lblNewLabel_1.setBounds(195, 93, 300, 27);
-        contentPane.add(lblNewLabel_1);
+        panel.add(lblNewLabel_1);
 //        Form making
         JLabel lblNewLabel_name = new JLabel("Name         : ");
         lblNewLabel_name.setForeground(Color.RED);
         lblNewLabel_name.setBounds(150, 165, 120, 16);
         lblNewLabel_name.setFont(new Font("Arial", Font.PLAIN, 16));
-        contentPane.add(lblNewLabel_name);
+        panel.add(lblNewLabel_name);
 
         JLabel lblNewLabel_2 = new JLabel("Username  : ");
         lblNewLabel_2.setForeground(Color.RED);
         lblNewLabel_2.setBounds(150, 200, 120, 16);
         lblNewLabel_2.setFont(new Font("Arial", Font.PLAIN, 16));
-        contentPane.add(lblNewLabel_2);
+        panel.add(lblNewLabel_2);
 
         JLabel lblNewLabel_3 = new JLabel("Password   :");
         lblNewLabel_3.setForeground(Color.RED);
         lblNewLabel_3.setBounds(150, 240, 120, 16);
         lblNewLabel_3.setFont(new Font("Arial", Font.PLAIN, 16));
-        contentPane.add(lblNewLabel_3);
+        panel.add(lblNewLabel_3);
 
         name = new JTextField();
         name.setBounds(250, 160, 150, 25);
-        contentPane.add(name);
+        panel.add(name);
 
         username = new JTextField();
         username.setBounds(250, 195, 150, 25);
-        contentPane.add(username);
+        panel.add(username);
 
         passwordField = new JPasswordField();
         passwordField.setBounds(250, 235, 150, 25);
-        contentPane.add(passwordField);
+        panel.add(passwordField);
 
         JLabel lblNewLabel_4 = new JLabel("Email          : ");
         lblNewLabel_4.setForeground(Color.RED);
         lblNewLabel_4.setBounds(150, 275, 120, 16);
         lblNewLabel_4.setFont(new Font("Arial", Font.PLAIN, 16));
-        contentPane.add(lblNewLabel_4);
+        panel.add(lblNewLabel_4);
 
         textField_1 = new JTextField();
         textField_1.setBounds(250, 270, 150, 25);
-        contentPane.add(textField_1);
+        panel.add(textField_1);
 
         JLabel lblNewLabel_5 = new JLabel("Mobile No  :");
         lblNewLabel_5.setForeground(Color.RED);
         lblNewLabel_5.setFont(new Font("Arial", Font.PLAIN, 16));
         lblNewLabel_5.setBounds(150, 310, 150, 16);
-        contentPane.add(lblNewLabel_5);
+        panel.add(lblNewLabel_5);
 
         textField_2 = new JTextField();
         textField_2.setBounds(250, 305, 150, 26);
-        contentPane.add(textField_2);
+        panel.add(textField_2);
 
 
         JButton sign_up = new JButton("Sign Up");
-//        btnNewButton.addActionListener(new ActionListener() {
+//        sign_up.addActionListener(new ActionListener() {
 //            public void actionPerformed(ActionEvent e) {
 //                Login log = new Login();
 //                boolean b = true;
@@ -150,22 +139,41 @@ public class Register extends JFrame{
         sign_up.setForeground(Color.GREEN);
         sign_up.setBackground(bg);
         sign_up.setBounds(250, 400, 150, 30);
-        contentPane.add(sign_up);
+        panel.add(sign_up);
 
         JLabel lblNewLabel_7 = new JLabel("Register as  :");
         lblNewLabel_7.setFont(new Font("Arial", Font.PLAIN, 16));
         lblNewLabel_7.setForeground(Color.RED);
         lblNewLabel_7.setBounds(150, 355, 160, 20);
-        contentPane.add(lblNewLabel_7);
+        panel.add(lblNewLabel_7);
 
         JRadioButton r1=new JRadioButton("Owner");
         JRadioButton r2=new JRadioButton("User");
         r1.setBounds(250,350,70,30);
         r2.setBounds(330,350,70,30);
-        ButtonGroup bk=new ButtonGroup();
-        bk.add(r1);bk.add(r2);
-        contentPane.add(r1);
-        contentPane.add(r2);
+        ButtonGroup btngrp = new ButtonGroup();
+        btngrp.add(r1);btngrp.add(r2);
+        panel.add(r1);
+        panel.add(r2);
 
+    }
+
+    /**
+     * Launch the application.
+     */
+    public static void main(String[] args) {
+//        Register register = new Register();
+//        register.setVisible(true);
+
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    Register frame = new Register();
+                    frame.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 }

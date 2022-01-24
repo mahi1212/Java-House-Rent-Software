@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class HomePage {
+public class HomePage{
     //      Customizing btn clr
     Color FrameColor = new Color(22,145,217);
     Color BtnColor = new Color(25,110,217);
@@ -18,6 +18,8 @@ public class HomePage {
         JButton owner = new JButton("Owner Login");
         JButton admin = new JButton("Admin Login");
         JButton regBtn = new JButton("Register");
+
+
 //      Setting Bounds
         lb.setBounds(150, 50, 650, 70);
         lb.setFont(new Font("Serif", Font.BOLD, 25));
@@ -30,6 +32,15 @@ public class HomePage {
         user.setForeground(Color.WHITE);
         user.setToolTipText("Login as user");
         user.setFocusPainted(false);
+//        user.addActionListener(this);
+//        user.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                Login log = new Login();
+//
+//                f.dispose();
+//            }
+//        });
 
         owner.setBounds(340, 190, 140, 35);
         owner.setFont(new Font("Arial", Font.BOLD, 14));
@@ -56,6 +67,30 @@ public class HomePage {
             public void actionPerformed(ActionEvent e) {
                 Register register = new Register();
                 register.setVisible(true);
+                f.dispose();
+            }
+        });
+//        user btn
+        user.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Login login = new Login();
+                f.dispose();
+            }
+        });
+//        Owner btn
+        owner.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Login login = new Login();
+                f.dispose();
+            }
+        });
+//        Admin btn
+        admin.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Login login = new Login();
                 f.dispose();
             }
         });
