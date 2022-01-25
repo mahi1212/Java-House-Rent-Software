@@ -5,14 +5,12 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.ImageFilter;
 import java.io.File;
 
 
 public class OwnerInfo {
-
+    Color btnColor = new Color(20,70,40);
     OwnerInfo(){
-
         JFrame f = new JFrame("House Rent Software");
         JLabel lb = new JLabel("HOUSE INFORMATION");
         JLabel loclb = new JLabel("LOCATION             :");
@@ -34,10 +32,11 @@ public class OwnerInfo {
         JLabel imlb = new JLabel("IMAGES               :");
         JLabel deslb = new JLabel("DESCRIPTION    :");
         JTextField destf = new JTextField();
-
+//        Submit btn adding
         JButton b = new JButton("SUBMIT");
-
-
+        b.setBackground(btnColor);
+        b.setForeground(Color.GREEN);
+//        Adding file chooser button
         JButton imgBtn = new JButton("File Chooser");
         JLabel lab = new JLabel();
         imgBtn.addActionListener(new ActionListener() {
@@ -59,8 +58,6 @@ public class OwnerInfo {
                 }
             }
         });
-
-
 
         lb.setBounds(100, 40, 400, 50);
         lb.setFont(new Font("Serif", Font.BOLD, 30));
@@ -87,7 +84,7 @@ public class OwnerInfo {
         b.setBounds(200, 565, 200, 30);
         imgBtn.setBounds(250, 400, 130, 30);
         lab.setBounds(400, 400, 150, 40);
-
+//        Adding all components to frame
         f.add(lb);
         f.add(loclb);
         f.add(loctf);
@@ -117,7 +114,7 @@ public class OwnerInfo {
         f.setResizable(false);
         f.setLayout(null);
         f.setVisible(true);
-
+        f.setLocationRelativeTo(null);
 
     }
 

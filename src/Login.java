@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Login {
     JFrame frame;
@@ -43,7 +45,13 @@ public class Login {
         login_btn.setForeground(Color.WHITE);
         login_btn.setBounds(170, 300, 80, 40);
         login_btn.setFont(new Font("Arial", Font.PLAIN, 13));
-
+        login_btn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                OwnerInfo owner = new OwnerInfo();
+                frame.dispose();
+            }
+        });
 
         frame.setContentPane(panel);
         frame.add(loginLabel);
@@ -65,17 +73,7 @@ public class Login {
 
     public static void main(String[] args) {
         Login log = new Login();
-////        log.setVisible(true);
-//        EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                try {
-//                    Login log = new Login();
-//                    log.setVisible(true);
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        });
+
     }
 
 }

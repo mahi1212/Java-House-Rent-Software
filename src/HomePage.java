@@ -32,15 +32,6 @@ public class HomePage{
         user.setForeground(Color.WHITE);
         user.setToolTipText("Login as user");
         user.setFocusPainted(false);
-//        user.addActionListener(this);
-//        user.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                Login log = new Login();
-//
-//                f.dispose();
-//            }
-//        });
 
         owner.setBounds(340, 190, 140, 35);
         owner.setFont(new Font("Arial", Font.BOLD, 14));
