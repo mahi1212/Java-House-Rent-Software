@@ -4,7 +4,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
 
-public class Login{
+
+public class OwnerLogin {
+
+
     JFrame frame;
     JPanel panel;
     JLabel loginLabel, userLabel, passLabel;
@@ -12,11 +15,11 @@ public class Login{
     JPasswordField passField;
     JButton login_btn;
 
-    Login(){
+    OwnerLogin(){
         frame = new JFrame("Login");
         panel = new JPanel();
-        loginLabel = new JLabel("USER  LOGIN  PAGE");
-        loginLabel.setBounds(110, 90, 200, 50);
+        loginLabel = new JLabel("OWNER LOGIN  PAGE");
+        loginLabel.setBounds(130, 90, 200, 50);
         loginLabel.setFont(new Font("Serif", Font.PLAIN, 18));
         loginLabel.setForeground(Color.WHITE);
 
@@ -28,8 +31,8 @@ public class Login{
         userField = new JTextField();
         userField.setBounds(170, 175, 160 , 25);
         userField.setFont(new Font("Arial", Font.PLAIN, 13));
-        userField.setBackground(Color.WHITE);
-//        userField.setForeground(Color.WHITE);
+        userField.setBackground(Color.BLACK);
+        userField.setForeground(Color.WHITE);
 
         passLabel = new JLabel("PASSWORD  :");
         passLabel.setBounds(70, 220, 100 , 40);
@@ -39,8 +42,8 @@ public class Login{
         passField = new JPasswordField();
         passField.setBounds(170, 225, 160 , 25);
         passField.setFont(new Font("Arial", Font.PLAIN, 13));
-        passField.setBackground(Color.WHITE);
-//        passField.setForeground(Color.WHITE);
+        passField.setBackground(Color.BLACK);
+        passField.setForeground(Color.WHITE);
 
         login_btn = new JButton("Login");
         login_btn.setBackground(new Color(0, 0 , 90));
@@ -58,7 +61,7 @@ public class Login{
 
                     java.sql.Connection con = ConnectDatabase.connect();
                     PreparedStatement st =
-                            (PreparedStatement) con.prepareStatement("Select username, password from user_reg where username=? and password=?");
+                            (PreparedStatement) con.prepareStatement("Select username, password from owner_reg where username=? and password=?");
 
                     st.setString(1, userName);
                     st.setString(2, newPass);
@@ -66,7 +69,7 @@ public class Login{
                     if (rs.next()) {
                         frame.dispose();
                         JOptionPane.showMessageDialog(login_btn, "You have successfully logged in");
-                        JTableWithImage x = new JTableWithImage();
+                        OwnerInfo x = new OwnerInfo();
                         x.setVisible(true);
                     } else {
                         JOptionPane.showMessageDialog(login_btn, "Wrong Username & Password");
@@ -86,7 +89,7 @@ public class Login{
         frame.add(login_btn);
 
 
-        panel.setBackground(new Color(0,50,40));
+        panel.setBackground(new Color(0,0, 40));
         frame.setSize(400, 500);
         frame.setLayout(null);
         frame.setVisible(true);

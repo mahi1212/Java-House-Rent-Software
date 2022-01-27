@@ -2,14 +2,15 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.*;
 
 public class Register extends JFrame{
     private JPanel panel;
     private JTextField name;
     private JTextField username;
     private JPasswordField passwordField;
-    private JTextField textField_1;
-    private JTextField textField_2;
+    private JTextField email;
+    private JTextField mobile;
     private JTextField textField_3;
 
 
@@ -17,6 +18,7 @@ public class Register extends JFrame{
      * Create the frame.
      */
     public Register() {
+
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(400, 200, 600, 500);
         panel = new JPanel();
@@ -75,9 +77,9 @@ public class Register extends JFrame{
         lblNewLabel_4.setFont(new Font("Arial", Font.PLAIN, 16));
         panel.add(lblNewLabel_4);
 
-        textField_1 = new JTextField();
-        textField_1.setBounds(250, 270, 150, 25);
-        panel.add(textField_1);
+        email = new JTextField();
+        email.setBounds(250, 270, 150, 25);
+        panel.add(email);
 
         JLabel lblNewLabel_5 = new JLabel("Mobile No  :");
         lblNewLabel_5.setForeground(Color.RED);
@@ -85,61 +87,19 @@ public class Register extends JFrame{
         lblNewLabel_5.setBounds(150, 310, 150, 16);
         panel.add(lblNewLabel_5);
 
-        textField_2 = new JTextField();
-        textField_2.setBounds(250, 305, 150, 26);
-        panel.add(textField_2);
+        mobile = new JTextField();
+        mobile.setBounds(250, 305, 150, 26);
+        panel.add(mobile);
 
 
         JButton sign_up = new JButton("Sign Up");
-//        sign_up.addActionListener(new ActionListener() {
-//            public void actionPerformed(ActionEvent e) {
-//                Login log = new Login();
-//                boolean b = true;
-//                String s1 = textField.getText();
-//                char[] s = passwordField.getPassword();
-//                String s2 = String.valueOf(s);
-//                String s3 = textField_1.getText();
-//                if (!s3.contains("@")) {
-//                    JOptionPane.showMessageDialog(null, "Incorrect email address");
-//                    log.dispose();
-//                    b = false;
-//                }
-//                String s4 = textField_2.getText();
-//                if (s4.length() != 10) {
-//                    JOptionPane.showMessageDialog(null, "Incorrect mobile number");
-//                    log.dispose();
-//                    b = false;
-//                }
-//                String s5 = textField_3.getText();
-//                try {
-//                    Class.forName("org.sqlite.JDBC");
-//                    String url = "jdbc:sqlite:HRS.db";
-//                    Connection conn = null;
-//                    conn = DriverManager.getConnection(url);
-//                    String sql = "INSERT INTO details(un,pwd,email,phno,mode) VALUES(?,?,?,?,?)";
-//                    PreparedStatement ps = conn.prepareStatement(sql);
-//                    ps.setString(1, s1);
-//                    ps.setString(2, s2);
-//                    ps.setString(3, s3);
-//                    ps.setString(4, s4);
-//                    ps.setString(5, s5);
-//                    ps.executeUpdate();
-//                    ps.close();
-//                    conn.close();
-//                } catch (Exception a) {
-//                    System.out.print(a.getMessage());
-//                }
-//                if (b == true) {
-//                    log.setVisible(true);
-//                    dispose();
-//                }
-//            }
-//        });
+
+
         Color bg = new Color(25,110,217);
         sign_up.setForeground(Color.GREEN);
         sign_up.setBackground(bg);
         sign_up.setBounds(250, 400, 150, 30);
-        panel.add(sign_up);
+        // panel.add(sign_up);
 
         JLabel lblNewLabel_7 = new JLabel("Register as  :");
         lblNewLabel_7.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -147,14 +107,81 @@ public class Register extends JFrame{
         lblNewLabel_7.setBounds(150, 355, 160, 20);
         panel.add(lblNewLabel_7);
 
-        JRadioButton r1=new JRadioButton("Owner");
-        JRadioButton r2=new JRadioButton("User");
-        r1.setBounds(250,350,70,30);
-        r2.setBounds(330,350,70,30);
-        ButtonGroup btngrp = new ButtonGroup();
-        btngrp.add(r1);btngrp.add(r2);
+        JButton r1=new JButton("OWNER");
+        JButton r2=new JButton("USER");
+        r1.setBounds(250,350,80,30);
+        r2.setBounds(340,350,80,30);
+
+
+        r1.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+
+                String Name = name.getText();
+                String UserName = username.getText();
+                char [] Pass = passwordField.getPassword();
+                String newPass = String.valueOf(Pass);
+                String tmp = mobile.getText();
+                int Mobile = Integer.parseInt(tmp);
+                String Email = email.getText();
+
+                java.sql.Connection con = ConnectDatabase.connect();
+
+                try {
+
+                    Statement st = con.createStatement();
+
+                    st.executeUpdate("use house_rent");
+                    st.executeUpdate("Insert into owner_reg(name, username, password, email, mobile) "
+                            + "values ('"+Name+"', '"+UserName+"', '"+newPass+"', '"+Email+"', '"+Mobile+"' )");
+                    JOptionPane.showMessageDialog(null, "Done");
+                    HomePage h = new HomePage();
+                    h.setVisible(true);
+                }catch (SQLException e1) {
+                    JOptionPane.showMessageDialog(null, e1);
+                }
+
+            }
+        });
+
+        r2.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+
+                String Name = name.getText();
+                String UserName = username.getText();
+                char [] Pass = passwordField.getPassword();
+                String newPass = String.valueOf(Pass);
+                String tmp = mobile.getText();
+                int Mobile = Integer.parseInt(tmp);
+                String Email = email.getText();
+
+                java.sql.Connection con = ConnectDatabase.connect();
+
+                try {
+
+                    Statement st = con.createStatement();
+
+                    st.executeUpdate("use house_rent");
+                    st.executeUpdate("Insert into user_reg(name, username, password, email, mobile) "
+                            + "values ('"+Name+"', '"+UserName+"', '"+newPass+"', '"+Email+"', '"+Mobile+"' )");
+                    JOptionPane.showMessageDialog(null, "Done");
+                    HomePage h = new HomePage();
+                    h.setVisible(true);
+                }catch (SQLException e1) {
+                    JOptionPane.showMessageDialog(null, e1);
+                }
+
+            }
+        });
+
+
+
+
         panel.add(r1);
         panel.add(r2);
+
+
 
     }
 

@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class HomePage{
+public class HomePage extends JFrame{
     //      Customizing btn clr
     Color FrameColor = new Color(22,145,217);
     Color BtnColor = new Color(25,110,217);
@@ -73,7 +73,7 @@ public class HomePage{
         owner.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Login login = new Login();
+                OwnerLogin login = new OwnerLogin();
                 f.dispose();
             }
         });
@@ -109,3 +109,4 @@ public class HomePage{
         new HomePage();
     }
 }
+

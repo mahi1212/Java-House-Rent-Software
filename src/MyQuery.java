@@ -12,16 +12,9 @@ import java.util.logging.Logger;
 public class MyQuery {
 
     public Connection getConnection(){
-//        Connection con = null;
-//        try {
-//            con = DriverManager.getConnection("jdbc:mysql://localhost/project", "root","");
-//        } catch (SQLException ex) {
-//            Logger.getLogger(Query.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        return con;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/Test2", "root", "");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/house_rent", "root", "");
             return con;
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -29,26 +22,30 @@ public class MyQuery {
         return null;
     }
 
-    public ArrayList<Product2> BindTable(){
+    public ArrayList<Functions> BindTable(){
 
-        ArrayList<Product2> list = new ArrayList<Product2>();
+        ArrayList<Functions> list = new ArrayList<Functions>();
         Connection con = getConnection();
         Statement st;
         ResultSet rs;
 
         try {
             st = con.createStatement();
-            rs = st.executeQuery("SELECT `ID_PRO`, `PRO_NAME`, `QTE_IN_STOCK`, `PRICE`, `PRO_IMAGE`, `ID_CAT` FROM `products`");
+            rs = st.executeQuery("SELECT `name`, `location`, `no_of_room`, `gas_sys`, `allowed`, `rent_cost`, `house_no`, `mobile`, `image`, `description` FROM `owner_information`");
 
-            Product2 p;
+            Functions p;
             while(rs.next()){
-                p = new Product2(
-                        rs.getString("ID_PRO"),
-                        rs.getString("PRO_NAME"),
-                        rs.getInt("QTE_IN_STOCK"),
-                        rs.getString("PRICE"),
-                        rs.getBytes("PRO_IMAGE"),
-                        rs.getInt("ID_CAT")
+                p = new Functions(
+                        rs.getString("name"),
+                        rs.getString("location"),
+                        rs.getInt("no_of_room"),
+                        rs.getString("gas_sys"),
+                        rs.getString("allowed"),
+                        rs.getInt("rent_cost"),
+                        rs.getString("house_no"),
+                        rs.getInt("mobile"),
+                        rs.getBytes("image"),
+                        rs.getString("description")
                 );
                 list.add(p);
             }
